@@ -1,4 +1,4 @@
-package message
+package transport
 
 type Message struct {
 
@@ -6,5 +6,5 @@ type Message struct {
 	Type MessageType
 
 	// message data
-	Data []byte
+	Data string
 }

@@ -1,4 +1,4 @@
-package message
+package transport
 
 type MessageType string
 
