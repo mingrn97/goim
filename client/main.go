@@ -6,12 +6,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"itumate.com/im/config"
-	"itumate.com/im/transport"
 	"log"
 	"net"
 	"os"
 	"strings"
+
+	"itumate.com/im/config"
+	"itumate.com/im/transport"
 )
 
 func main() {

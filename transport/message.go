@@ -3,8 +3,8 @@ package transport
 type Message struct {
 
 	// message type
-	Type MessageType
+	Type MessageType `json:"type"`
 
 	// message data
-	Data string
+	Data string `json:"data"`
 }

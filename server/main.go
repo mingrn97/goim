@@ -4,10 +4,11 @@ import (
 	"encoding/binary"
 	"encoding/json"
 	"io"
-	"itumate.com/im/config"
-	"itumate.com/im/transport"
 	"log"
 	"net"
+
+	"itumate.com/im/config"
+	"itumate.com/im/transport"
 )
 
 func main() {
