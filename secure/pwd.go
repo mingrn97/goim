@@ -1,4 +1,4 @@
-package pwd
+package secure
 
 import (
 	"crypto/sha256"
@@ -16,7 +16,7 @@ func NewPwd() {
 	len, err := hash.Write([]byte(pwd))
 
 	if err != nil {
-		fmt.Printf("pwd err: %v\n", err)
+		fmt.Printf("secure exp: %v\n", err)
 	}
 
 	fmt.Printf("len: %d\n", len)
