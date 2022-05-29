@@ -7,13 +7,13 @@ import (
 	"log"
 	"net"
 
-	"itumate.com/im/config"
+	"itumate.com/im/conf"
 	"itumate.com/im/transport"
 )
 
 func main() {
 
-	l, err := net.Listen(config.Network, config.Host)
+	l, err := net.Listen(conf.GetNetwork(), conf.GetHost())
 	if err != nil {
 		log.Fatalln("start server fail", err)
 	}

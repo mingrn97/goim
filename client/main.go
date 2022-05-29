@@ -11,15 +11,15 @@ import (
 	"os"
 	"strings"
 
-	"itumate.com/im/config"
+	"itumate.com/im/conf"
 	"itumate.com/im/transport"
 )
 
 func main() {
 
-	c, err := net.Dial(config.Network, config.Host)
+	c, err := net.Dial(conf.GetNetwork(), conf.GetHost())
 	if err != nil {
-		log.Fatalln("Failed to connect to the server", config.Network, config.Host)
+		log.Fatalln("Failed to connect to the server", conf.GetNetwork(), conf.GetHost())
 	}
 
 	defer func(c net.Conn) {

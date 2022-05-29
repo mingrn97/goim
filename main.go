@@ -6,7 +6,7 @@ import (
 	"net"
 	"os"
 
-	"itumate.com/im/config"
+	"itumate.com/im/conf"
 	"itumate.com/im/pwd"
 )
 
@@ -15,13 +15,13 @@ func main() {
 	pwd.NewPwd()
 	os.Exit(0)
 
-	listener, err := net.Listen(config.Network, config.Host)
+	listener, err := net.Listen(conf.Network, conf.Host)
 	if err != nil {
 		fmt.Printf("server start fail: %v\n", err)
 	}
 	defer listener.Close()
 
-	fmt.Printf("server %s:%s start succeeded!\n", config.Network, config.Host)
+	fmt.Printf("server %s:%s start succeeded!\n", conf.Network, conf.Host)
 
 	for {
 		conn, err := listener.Accept()
