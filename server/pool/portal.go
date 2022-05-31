@@ -12,7 +12,7 @@ var (
 )
 
 type clientConn struct {
-	mu   sync.Mutex
+	mu   sync.RWMutex
 	cons []net.Conn
 }
 
@@ -43,6 +43,8 @@ func clientLogout(c net.Conn) {
 }
 
 func broadcast(eliminate net.Conn, message *transport.Message) {
+	clients.mu.RLock()
+	defer clients.mu.RUnlock()
 
 	for _, c := range clients.cons {
 		if c != eliminate {
