@@ -32,7 +32,15 @@ func Writer(c net.Conn) {
 			continue
 		}
 
-		// Send the read data to the server
-		transport.WritePlaintext(c, line)
+		var message = &transport.Message{
+			Type: transport.PlainType,
+			Data: line,
+		}
+
+		if data, err := transport.Encode(message); err != nil {
+			log.Println("encode data err!", err)
+		} else {
+			_, _ = c.Write(data)
+		}
 	}
 }

@@ -1,10 +1,11 @@
 package pool
 
 import (
+	"bufio"
+	"io"
 	"log"
 	"net"
 
-	"itumate.com/im/exp"
 	"itumate.com/im/transport"
 )
 
@@ -19,21 +20,21 @@ func ProcessConn(c net.Conn) {
 	addr := c.RemoteAddr()
 	log.Println("remote client", addr.Network(), addr.String(), "establish connect!")
 
+	r := bufio.NewReader(c)
 	for {
-		message, err := transport.Read(c)
-		if err == exp.ConnClose {
+		message, err := transport.Decode(r)
+		if err == io.EOF {
 			log.Println("remote client", addr.Network(), addr.String(), "exit!")
 			clientLogout(c)
-			return
+			break
 		}
 		if err != nil {
-			log.Println("read remote client", addr.Network(), addr.String(), "data exp!")
-			continue
+			log.Println("read remote client", addr.Network(), addr.String(), "data err!", err)
+			break
 		}
 
-		log.Printf("%#v", message)
+		log.Printf("%#v\n", message)
 
 		broadcast(c, message)
-
 	}
 }
